@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Report Template -->
+    <template id="report_contact_template" name="Contact Report">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2>Contact List Report</h2>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="docs" t-as="contact">
+                                <tr>
+                                    <td><t t-esc="contact.name"/></td>
+                                    <td><t t-esc="contact.phone or '-'"/></td>
+                                    <td><t t-esc="contact.email or '-'"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- Report Action -->
+    <record id="action_report_contact" model="ir.actions.report">
+        <field name="name">Contact Report</field>
+        <field name="model">res.partner</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">contactspdf.report_contact_template</field>
+        <field name="print_report_name">'Contact Report - %s' % (object.name or 'Multiple Contacts')</field>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

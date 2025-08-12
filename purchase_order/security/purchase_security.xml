@@ -1,0 +1,7 @@
+<odoo>
+    <record id="group_purchase_manager_custom" model="res.groups">
+        <field name="name">Purchase Manager (Custom)</field>
+        <field name="category_id" ref="purchase.group_purchase_manager"
+/>
+    </record>
+</odoo>

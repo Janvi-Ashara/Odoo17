@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Kanban Dashboard View -->
+    <record id="view_dashboard_kanban" model="ir.ui.view">
+        <field name="name">mini_sale_purchase_dashboard.sales_purchase.kanban</field>
+        <field name="model">mini_sale_purchase_dashboard.sales_purchase</field>
+        <field name="arch" type="xml">
+            <kanban create="false" delete="false" edit="false" class="o_kanban_dashboard o_sales_purchase_dashboard">
+                <field name="name"/>
+                <field name="total_sales_this_month"/>
+                <field name="total_purchase_this_month"/>
+                <field name="total_invoices_this_month"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click" style="min-height: 400px;">
+                            <!-- Dashboard Header -->
+                            <div class="o_kanban_card_header"
+                                 style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px 10px 0 0;">
+                                <div class="o_kanban_card_header_title">
+                                    <div class="o_primary">
+                                        <h4 style="margin: 0; color: white;">
+<!--                                            <i class="fa fa-dashboard mr-2"/>-->
+                                            Sales &amp; Purchase Dashboard
+                                        </h4>
+                                        <p style="margin: 5px 0 0 0; opacity: 0.9;">
+                                            <i class="fa fa-calendar mr-1"/>
+                                            Current Month Overview
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Dashboard Content -->
+                            <div class="container-fluid" style="padding: 20px;">
+                                <div class="row">
+                                    <!-- Sales Orders Card -->
+                                    <div class="col-12 mb-4">
+                                        <div class="card h-100"
+                                             style="border: none; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 10px;">
+                                            <div class="card-header"
+                                                 style="background: #28a745; color: white; border-radius: 10px 10px 0 0;">
+                                                <h5 class="mb-0">
+                                                    <i class="fa fa-shopping-cart mr-2"/>
+                                                    Sales Orders
+                                                </h5>
+                                            </div>
+                                            <div class="card-body text-center">
+                                                <h2 class="text-success mb-3">
+                                                    <t t-esc="record.total_sales_this_month.raw_value"/>
+                                                </h2>
+                                                <p class="text-muted mb-3">Total Sales Orders</p>
+                                                <div class="mt-auto">
+                                                    <button type="object" name="refresh_dashboard"
+                                                            class="btn btn-success btn-sm btn-block">
+                                                        <i class="fa fa-refresh mr-1"/>
+                                                        Refresh
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Purchase Orders Card -->
+                                    <div class="col-12 mb-4">
+                                        <div class="card h-100"
+                                             style="border: none; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 10px;">
+                                            <div class="card-header"
+                                                 style="background: #007bff; color: white; border-radius: 10px 10px 0 0;">
+                                                <h5 class="mb-0">
+                                                    <i class="fa fa-shopping-bag mr-2"/>
+                                                    Purchase Orders
+                                                </h5>
+                                            </div>
+                                            <div class="card-body text-center">
+                                                <h2 class="text-primary mb-3">
+                                                    <t t-esc="record.total_purchase_this_month.raw_value"/>
+                                                </h2>
+                                                <p class="text-muted mb-3">Total Purchase Orders</p>
+                                                <div class="mt-auto">
+                                                    <button type="object" name="refresh_dashboard"
+                                                            class="btn btn-primary btn-sm btn-block">
+                                                        <i class="fa fa-refresh mr-1"/>
+                                                        Refresh
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Invoices Card -->
+                                    <div class="col-12 mb-4">
+                                        <div class="card h-100"
+                                             style="border: none; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 10px;">
+                                            <div class="card-header"
+                                                 style="background: #6f42c1; color: white; border-radius: 10px 10px 0 0;">
+                                                <h5 class="mb-0">
+                                                    <i class="fa fa-file-invoice mr-2"/>
+                                                    Invoices
+                                                </h5>
+                                            </div>
+                                            <div class="card-body text-center">
+                                                <h2 class="text-purple mb-3">
+                                                    <t t-esc="record.total_invoices_this_month.raw_value"/>
+                                                </h2>
+                                                <p class="text-muted mb-3">Total Invoices</p>
+                                                <div class="mt-auto">
+<!--                                                     <button type="object" name="refresh_dashboard"-->
+<!--                                                            class="btn btn-primary btn-sm btn-block">-->
+<!--                                                        <i class="fa fa-refresh mr-1"/>-->
+<!--                                                        Refresh-->
+<!--                                                    </button>-->
+                                                    <button type="object" name="refresh_dashboard"
+                                                            class="btn btn-info btn-sm btn-block">
+                                                        <i class="fa fa-refresh mr-1"/>
+                                                        Refresh
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Summary Row -->
+                                <div class="row mt-4">
+                                    <div class="col-12">
+                                        <div class="card"
+                                             style="border: none; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 10px;">
+                                            <div class="card-header"
+                                                 style="background: #6c757d; color: white; border-radius: 10px 10px 0 0;">
+                                                <h5 class="mb-0">
+                                                    <i class="fa fa-chart-line mr-2"/>
+                                                    Monthly Summary
+                                                </h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row text-center">
+                                                    <div class="col-md-4">
+                                                        <h4 class="text-success">
+                                                            <t t-esc="record.total_sales_this_month.raw_value"/>
+                                                        </h4>
+                                                        <small class="text-muted">Sales Orders</small>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <h4 class="text-primary">
+                                                            <t t-esc="record.total_purchase_this_month.raw_value"/>
+                                                        </h4>
+                                                        <small class="text-muted">Purchase Orders</small>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <h4 class="text-purple">
+                                                            <t t-esc="record.total_invoices_this_month.raw_value"/>
+                                                        </h4>
+                                                        <small class="text-muted">Invoices</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- The window action that opens the dashboard view -->
+    <record id="action_mini_dashboard" model="ir.actions.act_window">
+        <field name="name">Mini Dashboard</field>
+        <field name="res_model">mini_sale_purchase_dashboard.sales_purchase</field>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="view_dashboard_kanban"/>
+        <field name="target">main</field>
+        <field name="context">{'create': False}</field>
+        <field name="domain">[]</field>
+    </record>
+
+    <!-- The main menu item to access the dashboard -->
+    <menuitem id="menu_mini_dashboard_root"
+              name="Mini Dashboard"
+              web_icon="mini_sale_purchase_dashboard,static/description/icon.png"
+              sequence="100"/>
+
+    <!-- A submenu item that links to the action -->
+    <menuitem id="menu_mini_dashboard_action"
+              name="Sales and Purchase"
+              parent="menu_mini_dashboard_root"
+              action="action_mini_dashboard"
+              sequence="1"/>
+
+    <!-- Create a default dashboard record -->
+    <record id="default_dashboard" model="mini_sale_purchase_dashboard.sales_purchase">
+        <field name="name">Sales and Purchase Dashboard</field>
+    </record>
+
+</odoo>
