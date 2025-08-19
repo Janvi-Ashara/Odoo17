@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Add DOB & Age to the Contact form -->
+    <record id="view_partner_form_inherit_dob" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.dob.age</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/notebook" position="inside">
+                <page string="Personal">
+                    <group>
+                        <field name="date_of_birth"/>
+                        <field name="age_years" readonly="1"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Add a search filter for Birthday Today -->
+    <record id="view_res_partner_filter_inherit_birthday" model="ir.ui.view">
+        <field name="name">res.partner.search.inherit.birthday.today</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <filter name="birthday_today" string="Birthday Today"
+                        domain="[('is_birthday_today','=',True)]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Optional: show DOB and a badge in kanban -->
+
+    <record id="view_partner_kanban_inherit_birthday" model="ir.ui.view">
+    <field name="name">res.partner.kanban.inherit.birthday</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+    <field name="arch" type="xml">
+
+        <!-- Target the main kanban-box div -->
+        <xpath expr="//div[contains(@class, 'oe_kanban_global_click')]" position="inside">
+            <div class="o_kanban_details">
+                <field name="date_of_birth"/>
+                <field name="age_years"/>
+            </div>
+        </xpath>
+
+    </field>
+</record>
+
+</odoo>

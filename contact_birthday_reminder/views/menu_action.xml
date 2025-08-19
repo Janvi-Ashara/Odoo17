@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Action: open contacts whose birthday is today (Kanban by default) -->
+    <record id="action_contacts_birthday_today" model="ir.actions.act_window">
+        <field name="name">Today's Birthdays</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[("is_company","=",False), ("is_birthday_today","=",True)]</field>
+        <field name="context">{"search_default_birthday_today": 1, "default_is_company": False}</field>
+        <!-- optional: restrict to active contacts only -->
+        <field name="search_view_id" ref="base.view_res_partner_filter"/>
+    </record>
+
+
+    <menuitem id="menu_contacts_birthday_root"
+              name="Birthdays"
+              parent="contacts.menu_contacts"
+              sequence="95"/>
+
+    <menuitem id="menu_contacts_birthday_today"
+              name="Today's Birthdays"
+              parent="menu_contacts_birthday_root"
+              action="action_contacts_birthday_today"
+              sequence="1"/>
+</odoo>

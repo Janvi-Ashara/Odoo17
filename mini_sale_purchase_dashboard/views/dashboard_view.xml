@@ -19,7 +19,7 @@
                                 <div class="o_kanban_card_header_title">
                                     <div class="o_primary">
                                         <h4 style="margin: 0; color: white;">
-<!--                                            <i class="fa fa-dashboard mr-2"/>-->
+                                            <!--                                            <i class="fa fa-dashboard mr-2"/>-->
                                             Sales &amp; Purchase Dashboard
                                         </h4>
                                         <p style="margin: 5px 0 0 0; opacity: 0.9;">
@@ -104,11 +104,7 @@
                                                 </h2>
                                                 <p class="text-muted mb-3">Total Invoices</p>
                                                 <div class="mt-auto">
-<!--                                                     <button type="object" name="refresh_dashboard"-->
-<!--                                                            class="btn btn-primary btn-sm btn-block">-->
-<!--                                                        <i class="fa fa-refresh mr-1"/>-->
-<!--                                                        Refresh-->
-<!--                                                    </button>-->
+
                                                     <button type="object" name="refresh_dashboard"
                                                             class="btn btn-info btn-sm btn-block">
                                                         <i class="fa fa-refresh mr-1"/>
