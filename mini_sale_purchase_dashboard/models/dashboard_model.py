@@ -3,7 +3,6 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-
 class DashboardSalesPurchase(models.Model):
     _name = 'mini_sale_purchase_dashboard.sales_purchase'
     _description = 'Sales and Purchase Dashboard'

@@ -1,56 +1,48 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <data>
-        <template id="report_product_stock_template">
-            <t t-call="web.html_container">
-                <t t-call="web.external_layout">
-                    <div class="page">
-                        <h2>Simple Stock Report</h2>
-                        <table class="table table-sm table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Product Name</th>
-                                    <th>Available Quantity</th>
-                                    <th>Cost Price</th>
+    <template id="simple_stock_report_card_report">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2 class="text-center" style="margin-bottom:20px;">Simple Stock Report</h2>
+                    <table class="table table-sm table-bordered" style="width:100%; border-collapse: collapse;">
+                        <thead style="background-color:#f2f2f2;">
+                            <tr style="border:1px solid black; text-align:center;">
+                                <th style="border:1px solid black; padding:6px;">Product</th>
+                                <th style="border:1px solid black; padding:6px;">Internal Reference</th>
+                                <th style="border:1px solid black; padding:6px;">Available Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="docs" t-as="p">
+                                <tr style="border:1px solid black;">
+                                    <td style="border:1px solid black; padding:6px;text-align:center;">
+                                        <span t-field="p.name"/>
+                                    </td>
+                                    <td style="border:1px solid black; padding:6px; text-align:center;">
+                                        <span t-field="p.default_code"/>
+                                    </td>
+                                    <td style="border:1px solid black; padding:6px; text-align:center;">
+                                        <span t-esc="p.qty_available or '-'"/>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <t t-foreach="docs" t-as="product">
-                                    <tr>
-                                        <td>
-                                            <span t-field="product.name"/>
-                                        </td>
-                                        <td>
-                                            <span t-field="product.qty_available"/>
-                                        </td>
-                                        <td>
-                                            <span t-field="product.standard_price"/>
-                                        </td>
-                                    </tr>
-                                </t>
-                            </tbody>
-                        </table>
-                    </div>
-                </t>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
             </t>
-        </template>
+        </t>
+    </template>
 
-        <report
-            id="report_product_stock_id_1"
-            string="Simple Stock Report"
-            model="product.template"
-            report_type="qweb-pdf"
-            name="simple_stock_report.report_product_stock_template"
-            file="simple_stock_report.report_product_stock_template"
-        />
 
-        <record id="action_product_stock_report_server" model="ir.actions.server">
-            <field name="name">Simple Stock Report</field>
-            <field name="model_id" ref="product.model_product_template"/>
-            <field name="state">code</field>
-            <field name="code">
-                action = env.ref('simple_stock_report.report_product_stock_id_1').report_action([])
-            </field>
-        </record>
-    </data>
+    <record id="stock_report_card" model="ir.actions.report">
+        <field name="name">Stock PDF</field>
+        <field name="model">product.product</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">simple_stock_report.simple_stock_report_card_report</field>
+        <field name="report_file">simple_stock_report.simple_stock_report_card_report</field>
+        <field name="print_report_name">'Stock_Report_' + object.display_name</field>
+        <field name="binding_model_id" ref="product.model_product_product"/>
+        <field name="binding_type">report</field>
+    </record>
 </odoo>
