@@ -2,7 +2,7 @@
 <templates xml:space="preserve">
 
     <t t-name="new_dashboards.SalesDashboard">
-        <div class="container-fluid" style="padding:30px;">
+        <div class="container-fluid p-4">
 
             <!-- Title -->
             <div class="text-center mb-5">
@@ -10,9 +10,9 @@
                 <p style="color:#7f8c8d;">Overview of Quotations, Orders, Invoices &amp; Revenue</p>
             </div>
 
+            <!-- KPI Cards -->
             <div class="row g-4">
 
-                <!-- Total Sale Orders -->
                 <div class="col-md-4 col-lg-2">
                     <div class="card shadow-sm text-center border-0"
                          style="border-radius:15px; background:#f39c12; color:white;">
@@ -23,51 +23,46 @@
                     </div>
                 </div>
 
-                <!-- Total Quotations -->
                 <div class="col-md-4 col-lg-2">
                     <div class="card shadow-sm text-center border-0"
                          style="border-radius:15px; background:#3498db; color:white;">
                         <div class="card-body">
                             <h3 class="fw-bold mb-2"><t t-esc="state.quotations"/></h3>
-                            <p class="mb-0">Total Quotations</p>
+                            <p class="mb-0">Quotations</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Total Orders -->
                 <div class="col-md-4 col-lg-2">
                     <div class="card shadow-sm text-center border-0"
                          style="border-radius:15px; background:#27ae60; color:white;">
                         <div class="card-body">
                             <h3 class="fw-bold mb-2"><t t-esc="state.orders"/></h3>
-                            <p class="mb-0">Total Orders</p>
+                            <p class="mb-0">Orders</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Total Sale Order Amount -->
                 <div class="col-md-4 col-lg-2">
                     <div class="card shadow-sm text-center border-0"
                          style="border-radius:15px; background:#8e44ad; color:white;">
                         <div class="card-body">
                             <h3 class="fw-bold mb-2"><t t-esc="state.total_sale_order_amount"/></h3>
-                            <p class="mb-0">Sale Order Amount</p>
+                            <p class="mb-0">Order Amount</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Total Invoices -->
                 <div class="col-md-4 col-lg-2">
                     <div class="card shadow-sm text-center border-0"
                          style="border-radius:15px; background:#e74c3c; color:white;">
                         <div class="card-body">
                             <h3 class="fw-bold mb-2"><t t-esc="state.invoices"/></h3>
-                            <p class="mb-0">Total Invoices</p>
+                            <p class="mb-0">Invoices</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Total Amount (Quotation + Orders) -->
                 <div class="col-md-4 col-lg-2">
                     <div class="card shadow-sm text-center border-0"
                          style="border-radius:15px; background:#2c3e50; color:white;">
@@ -77,8 +72,10 @@
                         </div>
                     </div>
                 </div>
-
             </div>
+
+
+
         </div>
     </t>
 </templates>

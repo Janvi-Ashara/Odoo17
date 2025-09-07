@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve" owl="1">
+    <t t-name="owl.OwlSalesDashboard" owl="1">
+        <div class="vh-100 overflow-auto bg-muted">
+            <div class="row m-3">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col m-0 p-0">
+                            <div class="shadow-sm border m-2 p-4 bg-white">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h1 class="text-primary fw-bold">Custom Sales Dashboard</h1>
+                                    <div>
+                                        <select class="form-select" t-model="state.period"
+                                                t-on-change="onPeriodChange">
+                                            <option value="0">Select Period</option>
+                                            <option value="7">Last 7 Days</option>
+                                            <option value="30">Last 30 Days</option>
+                                            <option value="90">Last 90 Days</option>
+                                            <option value="365">Last 365 Days</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <KpiCard
+                                t-on-click="viewQuotation"
+                                name="'Quotations'"
+                                value="state.quotations.value"
+                                percentage="state.quotations.percentage"
+                        />
+                        <KpiCard
+                                t-on-click="viewOrders"
+                                name="'Orders'"
+                                value="state.orders.value"
+                                percentage="state.orders.percentage"
+                        />
+                        <KpiCard
+                                t-on-click="viewRevenues"
+                                name="'Revenue'"
+                                value="state.revenue.value"
+                                percentage="state.revenue.percentage"
+                        />
+
+                        <KpiCard
+                                t-on-click="viewAvgOrders"
+                                name="'Avg Order Value'"
+                                value="state.avg_order.value"
+                                percentage="state.avg_order.percentage"
+                        />
+
+                    </div>
+
+                    <!-- Top Products & Sales People -->
+                    <div class="row">
+                        <div class="col-lg-6 m-0 p-0">
+                            <div class="shadow-sm border m-2 p-4 bg-white">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h1 class="text-primary fw-bold">Top Products</h1>
+                                    <div class="px-3 py-1 bg-primary cursor-pointer">
+                                        <span class="fa fa-arrow-right text-white"/>
+                                    </div>
+                                </div>
+                                <ChartRenderer
+                                        type="'bar'"
+                                        title="'Top Products Report'"
+                                        labels="state.topProducts.labels"
+                                        values="state.topProducts.values"
+                                        percentages="state.topProducts.percentages"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 m-0 p-0">
+                            <div class="shadow-sm border m-2 p-4 bg-white">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h1 class="text-primary fw-bold">Top Sales People</h1>
+                                    <div class="px-3 py-1 bg-primary cursor-pointer">
+                                        <span class="fa fa-arrow-right text-white"/>
+                                    </div>
+                                </div>
+                                <ChartRenderer
+                                        type="'bar'"
+                                        title="'Top Sales People Report'"
+                                        labels="state.topSalespersons.labels"
+                                        values="state.topSalespersons.values"
+                                        percentages="state.topSalespersons.percentages"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Monthly Sales & Top Sale Orders -->
+                    <div class="row">
+                        <div class="col-lg-6 m-0 p-0">
+                            <div class="shadow-sm border m-2 p-4 bg-white">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h1 class="text-primary fw-bold">Monthly Sales</h1>
+                                    <div class="px-3 py-1 bg-primary cursor-pointer">
+                                        <span class="fa fa-arrow-right text-white"/>
+                                    </div>
+                                </div>
+                                <ChartRenderer
+                                        type="'pie'"
+                                        title="'Monthly Sales Trend'"
+                                        labels="state.monthlySales.labels"
+                                        values="state.monthlySales.values"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 m-0 p-0">
+                            <div class="shadow-sm border m-2 p-4 bg-white">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h1 class="text-primary fw-bold">Top Sale Orders</h1>
+                                    <div class="px-3 py-1 bg-primary cursor-pointer">
+                                        <span class="fa fa-arrow-right text-white"/>
+                                    </div>
+                                </div>
+                                <ChartRenderer
+                                        type="'line'"
+                                        title="'Top Sale Orders'"
+                                        labels="state.topSaleOrders.labels"
+                                        values="state.topSaleOrders.values"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

@@ -28,6 +28,7 @@ Long description of module's purpose
     ],
     'installable': True,
     'application': False,
+    'license': 'LGPL-3',
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',

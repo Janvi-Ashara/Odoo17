@@ -18,7 +18,7 @@ Long description of module's purpose
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','contacts'],
+    'depends': ['base', 'contacts'],
 
     # always loaded
     'data': [
@@ -30,4 +30,5 @@ Long description of module's purpose
     ],
     "installable": True,
     "application": False,
+    'license': 'LGPL-3',
 }
