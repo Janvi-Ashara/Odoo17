@@ -270,7 +270,7 @@ async getTopProducts() {
     };
   }
 
-  // Monthly Sales (full data, no filter)
+  // Monthly Sales
   async _getMonthlySales() {
     let domain = [["state", "in", ["sale", "done"]]];
 
@@ -288,7 +288,7 @@ async getTopProducts() {
     };
   }
 
-  // Top Sale Orders (full data, no filter)
+  // Top Sale Orders
   async _getTopSaleOrders() {
     let domain = [["state", "in", ["sale", "done"]]];
 
@@ -331,14 +331,34 @@ async getTopProducts() {
   }
 
   // Actions
+//  viewQuotation() {
+//    this.actionService.doAction("sale.action_quotations_with_onboarding", {
+//      additionalContext: {
+//        search_default_draft: 1,
+//        search_default_my_quotation: 2,
+//      },
+//    });
+//  }
+
   viewQuotation() {
-    this.actionService.doAction("sale.action_quotations_with_onboarding", {
-      additionalContext: {
-        search_default_draft: 1,
-        search_default_my_quotation: 2,
-      },
-    });
+     let domain = [["state", "in", ["draft", "sent"]]];
+     if(this.state.current_date) {
+        domain.push(["date_order" , ">" , this.state.current_date]);
+     }
+     this.actionService.doAction({
+       type: "ir.actions.act_window",
+       name: "Quotations",
+       res_model : "sale.order",
+       domain,
+       context : { group_by : ["date_order"]},
+       views : [
+                [false, "list"],
+                [false, "form"],
+       ],
+     });
   }
+
+
 
   viewOrders() {
     let domain = [["state", "in", ["sale", "done"]]];
